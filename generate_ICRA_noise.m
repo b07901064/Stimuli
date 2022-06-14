@@ -22,7 +22,7 @@ p0 = 20e-6; % Pa
 gain = 40;  % dB
 sensitivity = 11.19;  % device sensitivity mV/Pa
 SPL_desired = 80;    % dB
-SPL_tone = SPL_desired - icra_gain_vect(track_num_icra);    % dB
+
 
 % A 1-kHz calibration tone is available in the Track_10 of ICRA noise
 track_num_tone = 10;
@@ -31,17 +31,21 @@ track_num_icra = 8;
 % chunk selected form the given track (out of 5)
 selected_chunk = 3;
 
+SPL_tone = SPL_desired - icra_gain_vect(track_num_icra);    % dB
+
 % ramp time to smooth the audio signals
 t_ramp = 100e-3;
 
 % figure size
 figSize = [2 2 12 8];
 
-track_str = ['Track_' num2str(track_num_tone)];
+% track_str = ['Track_' num2str(track_num_tone)];
+track_str = [num2str(track_num_tone)];
 load(['audio_stimuli_' track_str]);
 audio_stim_tone = audio_stim;
 
-track_str = ['Track_' num2str(track_num_icra)];
+% track_str = ['Track_' num2str(track_num_icra)];
+track_str = [ num2str(track_num_icra)];
 load(['audio_stimuli_' track_str]);
 audio_stim_icra = audio_stim;
 clear audio_stim
